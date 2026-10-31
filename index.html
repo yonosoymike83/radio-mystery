@@ -8,19 +8,20 @@
   <link rel="stylesheet" href="style.css">
   <style>
     *{box-sizing:border-box}
-    body{margin:0;min-height:100vh;background:#111;color:#f7f7f7;font-family:Arial,Helvetica,sans-serif}
-    .home{width:min(100% - 40px,660px);margin:0 auto;padding:30px 0 42px;display:flex;flex-direction:column;align-items:center}
-    .home-logo{display:block;width:min(66vw,420px);height:auto;aspect-ratio:1;object-fit:contain;margin:0 auto 28px}
-    .home-title{font-size:clamp(29px,6vw,52px);line-height:1.12;font-weight:700;text-align:center;margin:0 0 38px;letter-spacing:-.6px}
-    .transmissions{width:100%;display:flex;flex-direction:column;gap:20px}
-    .transmission-link{min-height:84px;padding:18px 16px;display:flex;align-items:center;justify-content:center;text-align:center;text-decoration:none;color:#f5f5f5;background:#242424;border-radius:17px;font-size:clamp(21px,4.2vw,29px);font-weight:400;transition:background .15s ease}
+    html,body{width:100%;height:100%;margin:0;overflow:hidden}
+    body{background:#111;color:#f7f7f7;font-family:Arial,Helvetica,sans-serif}
+    .home{width:min(100% - 40px,660px);height:100svh;margin:0 auto;padding:clamp(10px,2vh,22px) 0 clamp(10px,2vh,22px);display:flex;flex-direction:column;align-items:center;overflow:hidden}
+    .home-logo{display:block;width:auto;height:clamp(120px,30svh,310px);max-width:min(66vw,350px);aspect-ratio:1;object-fit:contain;margin:0 auto clamp(8px,1.5vh,16px);flex:0 1 auto;min-height:0}
+    .home-title{flex:0 0 auto;font-size:clamp(25px,5.5vw,42px);line-height:1.08;font-weight:700;text-align:center;margin:0 0 clamp(12px,2.2vh,22px);letter-spacing:-.6px}
+    .transmissions{width:100%;min-height:0;flex:1;display:flex;flex-direction:column;gap:clamp(7px,1.3vh,13px)}
+    .transmission-link{flex:1;min-height:0;padding:7px 12px;display:flex;align-items:center;justify-content:center;text-align:center;text-decoration:none;color:#f5f5f5;background:#242424;border-radius:16px;font-size:clamp(17px,3.7vw,25px);font-weight:400;transition:background .15s ease}
     .transmission-link:active{background:#333}
-    @media(min-width:700px){.home{padding-top:36px}.home-logo{width:350px}.home-title{margin-bottom:38px}}
+    @media(max-height:650px){.home-logo{height:22svh;margin-bottom:6px}.home-title{font-size:clamp(22px,4.8vw,32px);margin-bottom:8px}.transmissions{gap:6px}.transmission-link{font-size:17px;border-radius:12px}}
   </style>
 </head>
 <body>
   <main class="home">
-    <img class="home-logo" src="assets/radio-mystery-logo.png" alt="Mystery Radio Cache logo">
+    <img class="home-logo" src="assets/mystery-radio-logo.png" alt="Mystery Radio Cache logo">
     <h1 class="home-title" id="cacheTitle">Mystery Radio Cache</h1>
     <nav class="transmissions" id="transmissions" aria-label="Transmissions"></nav>
   </main>
