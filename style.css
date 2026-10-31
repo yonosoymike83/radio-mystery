@@ -67,3 +67,194 @@ footer{text-align:center;margin-top:19px;color:#566166;font-size:8px;letter-spac
 @media(max-width:390px){.app{padding:14px 10px}.radio-face{grid-template-columns:1fr 115px;gap:7px}.speaker{height:112px}.radio-shell{padding:10px}.dial-head strong{font-size:20px}}
 
 .back-link{color:#c9a45d;text-decoration:none;font-size:12px;letter-spacing:1px;font-weight:700;display:inline-block;margin:0 0 12px}
+
+
+/* =================================
+   MYSTERY RADIO - MOBILE NO SCROLL
+   ================================= */
+
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    overflow: hidden !important;
+}
+
+body {
+    height: 100dvh;
+    min-height: 0;
+}
+
+.app {
+    width: min(100%, 560px);
+    height: 100dvh;
+    max-height: 100dvh;
+    min-height: 0;
+    overflow: hidden;
+    padding: 7px 14px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Cabecera */
+.topbar {
+    flex: 0 0 auto;
+    margin: 0 2px 8px;
+}
+
+/* Cuerpo de la radio */
+.radio-shell {
+    flex: 0 0 auto;
+    padding: 8px 10px;
+    border-radius: 16px;
+}
+
+.radio-top {
+    height: 19px;
+    padding-bottom: 5px;
+}
+
+/* Dial */
+.dial-window {
+    padding: 7px 10px 5px;
+}
+
+.scale {
+    height: 65px;
+    margin-top: 3px;
+}
+
+.needle {
+    height: 42px;
+}
+
+/* Altavoz y controles */
+.radio-face {
+    grid-template-columns: minmax(0, 1fr) 105px;
+    gap: 8px;
+    padding: 8px 5px 5px;
+}
+
+.speaker {
+    height: 85px;
+}
+
+.speaker-label {
+    margin-bottom: 5px;
+}
+
+.controls {
+    gap: 7px;
+}
+
+.knob-area {
+    width: 72px;
+    height: 72px;
+}
+
+.knob-hint {
+    font-size: 6px;
+    margin-top: 3px;
+}
+
+.radio-bottom {
+    padding: 6px 3px 1px;
+    font-size: 6px;
+}
+
+/* Panel inferior */
+.player-panel {
+    flex: 0 0 auto;
+    margin-top: 9px;
+    padding: 10px;
+}
+
+.frequency-line strong {
+    font-size: 14px;
+}
+
+.meter {
+    margin-top: 7px;
+}
+
+.feedback {
+    min-height: 25px;
+    padding: 4px 0;
+    font-size: 9px;
+}
+
+.power-button {
+    height: 39px;
+}
+
+.reset-button {
+    width: 39px;
+}
+
+/* Transmisión */
+.transmission {
+    margin-top: 7px;
+    padding: 7px 9px;
+}
+
+.transmission p {
+    margin: 5px 0;
+    font-size: 10px;
+}
+
+.coordinates-note {
+    font-size: 7px;
+}
+
+/* Pie */
+footer {
+    flex: 0 0 auto;
+    margin-top: auto;
+    padding: 8px 0 0;
+    font-size: 7px;
+}
+
+/* Móviles pequeños */
+@media (max-height: 700px) {
+    .radio-face {
+        grid-template-columns: minmax(0, 1fr) 90px;
+    }
+
+    .speaker {
+        height: 65px;
+    }
+
+    .knob-area {
+        width: 60px;
+        height: 60px;
+    }
+
+    .signal-bars {
+        height: 18px;
+    }
+
+    .player-panel {
+        padding: 7px 9px;
+    }
+
+    .power-button {
+        height: 34px;
+    }
+
+    footer {
+        padding-top: 4px;
+    }
+}
+
+@media (max-width: 360px) {
+    .app {
+        padding-left: 9px;
+        padding-right: 9px;
+    }
+
+    .radio-face {
+        grid-template-columns: minmax(0, 1fr) 82px;
+        gap: 5px;
+    }
+}
+
