@@ -1,91 +1,121 @@
+
 <!doctype html>
 <html lang="es">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#090b0d">
-  <title>Mystery Radio Cache · Transmission</title>
+  <meta name="theme-color" content="#17110d">
+  <title>Mystery Radio · Transmission</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <main class="app">
     <header class="topbar">
-      <a class="back-link" href="index.html">← TRANSMISSIONS</a>
-      <div class="brand-mark">MYSTERY <span>RADIO</span></div>
-      <div class="status"><i id="powerLed"></i><span id="statusText">OFF</span></div>
+      <a class="back-link" href="index.html" aria-label="Volver">←</a>
+      <div class="brand-mark">MR <span>70</span></div>
+      <div class="status" aria-label="Estado">
+        <i id="powerLed"></i>
+        <span id="statusText">OFF</span>
+      </div>
     </header>
 
-    <section class="radio-shell" aria-label="Radio FM antigua">
+    <section class="radio-shell" aria-label="Radio portátil antigua">
       <div class="radio-top">
-        <div class="screw"></div><div class="screw"></div>
-        <div class="radio-name">MR-70 <small>FM RECEIVER</small></div>
-        <div class="screw"></div><div class="screw"></div>
+        <div class="screw"></div>
+        <div class="radio-name">MYSTERY RADIO</div>
+        <div class="screw"></div>
       </div>
 
       <div class="dial-window">
         <div class="dial-head">
-          <span>FM</span>
+          <span class="dial-fm">FM</span>
           <strong id="frequencyReadout">——.— <small>MHz</small></strong>
-          <span class="stereo">STEREO <b id="stereoLed"></b></span>
         </div>
-        <div class="scale" id="scale" aria-label="Escala de frecuencias FM">
+
+        <div class="scale" id="scale" aria-label="Escala FM">
           <div class="scale-numbers">
-            <span>88</span><span>92</span><span>96</span><span>100</span><span>104</span><span>108</span>
+            <span>88</span><span>92</span><span>96</span>
+            <span>100</span><span>104</span><span>108</span>
           </div>
           <div class="ticks"></div>
           <div class="needle" id="needle"><div></div></div>
-          <div class="scale-caption">88 ───────────────────────────── 108 MHz</div>
+          <div class="scale-caption">88 <span></span> 108</div>
         </div>
       </div>
 
       <div class="radio-face">
         <div class="speaker-wrap">
-          <div class="speaker-label">MYSTERY RADIO • ANALOG TUNING</div>
           <div class="speaker" aria-hidden="true"></div>
-          <div class="speaker-bottom"><span>VOLUME</span><span>POWER</span></div>
         </div>
+
         <div class="controls">
-          <div class="signal-block">
-            <div class="signal-title">SIGNAL</div>
+          <div class="signal-block" aria-hidden="true">
             <div class="signal-bars" id="signalBars">
-              <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+              <i></i><i></i><i></i><i></i>
+              <i></i><i></i><i></i><i></i>
             </div>
-            <div class="signal-caption" id="signalCaption">NO SIGNAL</div>
+            <div class="signal-caption" id="signalCaption">—</div>
           </div>
+
           <div class="tuning-control">
-            <div class="tuning-label">TUNING</div>
             <div class="knob-area">
               <div class="knob-ring">
-                <div class="knob" id="knob" role="slider" tabindex="0" aria-label="Sintonizar frecuencia" aria-valuemin="88" aria-valuemax="108" aria-valuenow="94">
-                  <div class="knob-line"></div><div class="knob-center"></div>
+                <div class="knob" id="knob"
+                  role="slider"
+                  tabindex="0"
+                  aria-label="Sintonizar"
+                  aria-valuemin="88"
+                  aria-valuemax="108"
+                  aria-valuenow="94">
+                  <div class="knob-line"></div>
+                  <div class="knob-center"></div>
                 </div>
               </div>
             </div>
-            <div class="knob-hint">GIRA PARA SINTONIZAR</div>
           </div>
         </div>
       </div>
-      <div class="radio-bottom"><span>SUPERHETERODYNE</span><span>88–108 MHz</span><span>MADE FOR THE UNKNOWN</span></div>
+
+      <div class="radio-bottom">
+        <span>88–108 MHz</span><span>•</span><span>FM</span>
+      </div>
     </section>
 
     <section class="player-panel">
-      <div class="frequency-line"><span>FRECUENCIA ACTUAL</span><strong id="frequencyLabel">94.0 MHz</strong></div>
-      <div class="meter"><div id="meterFill"></div></div>
-      <div class="feedback" id="feedback">Enciende la radio para comenzar la búsqueda.</div>
-      <div class="actions">
-        <button class="power-button" id="powerButton"><span class="power-icon">⏻</span><span id="powerButtonText">ENCENDER RADIO</span></button>
-        <button class="reset-button" id="resetButton" title="Volver a la frecuencia inicial">↺</button>
+      <div class="frequency-line">
+        <span>FM</span>
+        <strong id="frequencyLabel">94.0 MHz</strong>
       </div>
+
+      <div class="meter">
+        <div id="meterFill"></div>
+      </div>
+
+      <div class="feedback" id="feedback">Enciende la radio.</div>
+
+      <div class="actions">
+        <button class="power-button" id="powerButton">
+          <span class="power-icon">⏻</span>
+          <span id="powerButtonText">ENCENDER</span>
+        </button>
+
+        <button class="reset-button" id="resetButton"
+          title="Reiniciar frecuencia" aria-label="Reiniciar">↺</button>
+      </div>
+
       <div class="transmission" id="transmission" hidden>
         <div class="on-air"><i></i> TRANSMISIÓN RECIBIDA</div>
-        <p>TRANSMISSION RECEIVED</p>
-        <div class="coordinates-note">LISTEN CAREFULLY AND NOTE THE COORDINATES</div>
+        <p>LISTEN CAREFULLY</p>
+        <div class="coordinates-note">NOTE THE COORDINATES</div>
       </div>
     </section>
-
-    <footer>UNA SEÑAL. UNA FRECUENCIA. UN DESTINO.</footer>
   </main>
-  <audio id="voiceAudio" src="assets/transmission.mp3" preload="auto" loop></audio>
+
+  <audio id="voiceAudio"
+    src="assets/transmission.mp3"
+    preload="auto"
+    loop></audio>
+
   <script src="transmissions.js"></script>
   <script src="app.js"></script>
 </body>
