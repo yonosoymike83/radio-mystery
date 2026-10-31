@@ -1,260 +1,656 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Roboto+Mono:wght@400;500;700&display=swap');
-:root{--bg:#090b0d;--panel:#15191c;--edge:#30383c;--amber:#e5a647;--amber2:#ffc66b;--muted:#788187;--green:#7bc68c}
-*{box-sizing:border-box}
-body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 50% 5%,#20272b 0,#0b0e10 48%,#070809 100%);color:#e9ecec;font-family:'Roboto Mono',monospace;display:flex;justify-content:center}
-.app{width:min(100%,560px);padding:20px 17px 28px}
-.topbar{display:flex;justify-content:space-between;align-items:center;margin:3px 2px 22px}
-.brand-mark{font:700 18px 'Barlow Condensed',sans-serif;letter-spacing:3px;color:#e8ecec}.brand-mark span{color:var(--amber)}
-.status{font-size:10px;letter-spacing:2px;color:#9ba3a7;display:flex;align-items:center;gap:8px}
-.status i,.on-air i{width:8px;height:8px;border-radius:50%;background:#51595d;display:inline-block;box-shadow:0 0 0 3px #252a2d}
-.status.on i{background:#e24e40;box-shadow:0 0 9px #e24e40}
-.radio-shell{background:linear-gradient(145deg,#292f32,#111517 45%,#202629);border:1px solid #424a4e;border-radius:17px;padding:13px 13px 11px;box-shadow:0 22px 50px #000b,inset 0 1px #ffffff20;position:relative}
-.radio-top{height:25px;display:flex;align-items:center;justify-content:space-between;padding:0 3px 10px}
-.screw{width:6px;height:6px;border-radius:50%;background:linear-gradient(135deg,#92999a,#343a3c);box-shadow:0 1px 2px #000}
-.radio-name{font:700 12px 'Barlow Condensed',sans-serif;letter-spacing:2px;color:#c7ccca}.radio-name small{font:500 8px 'Roboto Mono';color:#7e898d;margin-left:7px;letter-spacing:1px}
-.dial-window{background:linear-gradient(#302b20,#161916);border:1px solid #6a593e;border-radius:5px;padding:10px 12px 8px;box-shadow:inset 0 0 16px #000,0 1px #ffffff18}
-.dial-head{display:flex;align-items:center;justify-content:space-between;color:var(--amber);font-size:10px;letter-spacing:2px}
-.dial-head strong{font-size:23px;letter-spacing:1px;text-shadow:0 0 10px #e5a64780;font-weight:500}
-.dial-head strong small{font-size:10px}
-.stereo{font-size:8px;color:#a9a18b;letter-spacing:1px}.stereo b{display:inline-block;width:5px;height:5px;border-radius:50%;background:#4c4a3d;margin-left:3px}
-.scale{height:86px;position:relative;margin-top:5px;overflow:hidden}
-.scale-numbers{display:flex;justify-content:space-between;padding:0 1px;color:#e9c58c;font-size:10px;position:relative;z-index:1}
-.ticks{position:absolute;left:0;right:0;top:21px;height:29px;background:repeating-linear-gradient(90deg,#d6b77b 0 1px,transparent 1px calc(5% - 1px),#d6b77b calc(5% - 1px) 5%);opacity:.8}
-.ticks:after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0 calc(1% - 1px),#d6b77b calc(1% - 1px) 1%);opacity:.4}
-.needle{position:absolute;top:15px;left:30%;height:49px;width:2px;background:#f06b45;z-index:3;filter:drop-shadow(0 0 4px #ff754f);transform:translateX(-50%);pointer-events:none}
-.needle:before{content:"";position:absolute;top:-2px;left:-4px;border-left:5px solid transparent;border-right:5px solid transparent;border-top:8px solid #ff7950}
-.needle div{position:absolute;top:7px;left:0;height:42px;width:1px;background:#ff7950}
-.scale-caption{position:absolute;bottom:0;width:100%;text-align:center;font-size:8px;color:#9f906f;letter-spacing:1px}
-.radio-face{display:grid;grid-template-columns:1fr 130px;gap:12px;padding:14px 7px 9px;align-items:center}
-.speaker-wrap{min-width:0}
-.speaker-label{font-size:8px;letter-spacing:1.5px;color:#8e999b;margin:0 0 8px 4px}
-.speaker{height:125px;border-radius:7px;border:1px solid #343c40;background-color:#111517;background-image:radial-gradient(circle,#090b0c 0 2px,#333a3c 2.5px 3px,transparent 3.5px);background-size:9px 9px;box-shadow:inset 0 2px 9px #000,0 1px #ffffff12}
-.speaker-bottom{display:flex;justify-content:space-between;margin:7px 4px 0;font-size:7px;letter-spacing:1px;color:#6e797d}
-.controls{display:flex;flex-direction:column;align-items:center;gap:16px}
-.signal-block{text-align:center;width:100%}
-.signal-title,.tuning-label{font-size:8px;letter-spacing:2px;color:#9ca5a7;margin-bottom:8px}
-.signal-bars{height:25px;display:flex;align-items:end;justify-content:center;gap:3px}
-.signal-bars i{display:block;width:7px;height:7px;background:#46504f;border-radius:1px;transition:height .15s,background .15s}
-.signal-bars i:nth-child(2){height:10px}.signal-bars i:nth-child(3){height:13px}.signal-bars i:nth-child(4){height:16px}.signal-bars i:nth-child(5){height:19px}.signal-bars i:nth-child(6){height:22px}.signal-bars i:nth-child(7){height:24px}.signal-bars i:nth-child(8){height:25px}
-.signal-caption{font-size:7px;color:#9b8d70;margin-top:6px;letter-spacing:1px}
-.tuning-control{text-align:center}
-.knob-area{width:91px;height:91px;border-radius:50%;padding:7px;background:linear-gradient(145deg,#4a5154,#111517 60%,#353d40);box-shadow:0 4px 8px #000,inset 0 1px #ffffff40}
-.knob-ring{width:100%;height:100%;border-radius:50%;padding:5px;background:linear-gradient(145deg,#101416,#454d50,#111416)}
-.knob{height:100%;width:100%;border-radius:50%;position:relative;background:repeating-conic-gradient(from -135deg,#555e61 0deg 2deg,#252c2f 2deg 5deg);box-shadow:inset 0 2px 8px #000,0 1px 2px #ffffff25;touch-action:none;cursor:grab;outline:none}
-.knob:active{cursor:grabbing}
-.knob-line{position:absolute;top:7px;left:calc(50% - 2px);width:4px;height:17px;border-radius:3px;background:var(--amber2);box-shadow:0 0 7px #ffbd59}
-.knob-center{position:absolute;inset:26%;border-radius:50%;background:linear-gradient(145deg,#3a4245,#14191b);box-shadow:inset 0 2px 5px #000,0 1px #ffffff30}
-.knob-hint{font-size:7px;color:#7c878a;letter-spacing:1px;margin-top:7px;white-space:nowrap}
-.radio-bottom{border-top:1px solid #ffffff12;padding:9px 4px 1px;display:flex;justify-content:space-between;font-size:7px;color:#788286;letter-spacing:1px}
-.player-panel{margin-top:21px;background:#111619;border:1px solid #293236;border-radius:10px;padding:15px}
-.frequency-line{display:flex;justify-content:space-between;align-items:center;font-size:9px;color:#8b969a;letter-spacing:1px}
-.frequency-line strong{font-size:15px;color:var(--amber);letter-spacing:0}
-.meter{height:3px;background:#30383a;margin-top:11px;border-radius:5px;overflow:hidden}
-.meter div{height:100%;width:0;background:linear-gradient(90deg,#8b693a,#f3b85c);transition:width .12s}
-.feedback{min-height:34px;display:flex;align-items:center;justify-content:center;text-align:center;color:#aeb7b8;font-size:10px;line-height:1.5;padding:8px 0}
-.actions{display:flex;gap:8px}
-button{font-family:inherit;cursor:pointer}
-.power-button{height:46px;flex:1;border:1px solid #9a713b;border-radius:5px;background:linear-gradient(#dca44f,#9b6d31);color:#17130d;font-size:11px;font-weight:700;letter-spacing:1.3px;box-shadow:inset 0 1px #ffffff55,0 3px 0 #513a20}
-.power-button:active{transform:translateY(2px);box-shadow:inset 0 1px #ffffff55,0 1px 0 #513a20}
-.power-icon{font-size:17px;vertical-align:-2px;margin-right:8px}
-.reset-button{width:46px;border:1px solid #414a4d;border-radius:5px;background:#20272a;color:#c1c9c9;font-size:21px}
-.transmission{margin-top:14px;padding:13px;border:1px solid #42634b;background:#101b14;border-radius:6px}
-.on-air{font-size:10px;color:#8bd39a;letter-spacing:1.5px;font-weight:700}
-.on-air i{background:#70c982;box-shadow:0 0 10px #70c982}
-.transmission p{font-size:12px;line-height:1.7;color:#e2e9e2;margin:12px 0}
-.coordinates-note{font-size:8px;letter-spacing:1px;color:#8cae91}
-footer{text-align:center;margin-top:19px;color:#566166;font-size:8px;letter-spacing:2px}
-@media(max-width:390px){.app{padding:14px 10px}.radio-face{grid-template-columns:1fr 115px;gap:7px}.speaker{height:112px}.radio-shell{padding:10px}.dial-head strong{font-size:20px}}
 
-.back-link{color:#c9a45d;text-decoration:none;font-size:12px;letter-spacing:1px;font-weight:700;display:inline-block;margin:0 0 12px}
+:root {
+  --wood: #382319;
+  --wood2: #21150f;
+  --wood3: #563723;
+  --brass: #b88a4b;
+  --gold: #edc47e;
+  --cream: #f0d9ae;
+  --ink: #2a1c12;
+  --muted: #a88d69;
+  --green: #85a36b;
+}
 
-
-/* =================================
-   MYSTERY RADIO - MOBILE NO SCROLL
-   ================================= */
+* {
+  box-sizing: border-box;
+}
 
 html, body {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    overflow: hidden !important;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden !important;
 }
 
 body {
-    height: 100dvh;
-    min-height: 0;
+  min-height: 100svh;
+  height: 100svh;
+  display: flex;
+  justify-content: center;
+  color: var(--cream);
+  background: radial-gradient(
+    ellipse at 50% 8%,
+    #34251a 0,
+    #17110d 54%,
+    #090807 100%
+  );
+  font-family: 'Roboto Mono', monospace;
 }
 
 .app {
-    width: min(100%, 560px);
-    height: 100dvh;
-    max-height: 100dvh;
-    min-height: 0;
-    overflow: hidden;
-    padding: 7px 14px;
-    display: flex;
-    flex-direction: column;
+  width: min(100%, 560px);
+  height: 100svh;
+  max-height: 100svh;
+  min-height: 0;
+  padding: clamp(7px, 1.5vh, 14px) 14px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 /* Cabecera */
+
 .topbar {
-    flex: 0 0 auto;
-    margin: 0 2px 8px;
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 3px clamp(7px, 1.2vh, 12px);
+  height: 22px;
 }
 
-/* Cuerpo de la radio */
+.back-link {
+  color: #d5b47c;
+  text-decoration: none;
+  font-size: 21px;
+  line-height: 1;
+}
+
+.brand-mark {
+  font: 700 14px 'Barlow Condensed', sans-serif;
+  letter-spacing: 3px;
+  color: #e8d2aa;
+}
+
+.brand-mark span {
+  color: var(--gold);
+}
+
+.status {
+  font-size: 8px;
+  letter-spacing: 2px;
+  color: #c4aa82;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.status i,
+.on-air i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #555;
+  display: inline-block;
+  box-shadow: 0 0 0 2px #21170f;
+}
+
+.status.on i {
+  background: #d94b36;
+  box-shadow: 0 0 8px #e04c32;
+}
+
+/* Carcasa de baquelita y madera */
+
 .radio-shell {
-    flex: 0 0 auto;
-    padding: 8px 10px;
-    border-radius: 16px;
+  flex: 0 0 auto;
+  position: relative;
+  padding: 9px 10px 8px;
+  border-radius: 18px;
+  border: 2px solid #765334;
+  background:
+    repeating-linear-gradient(
+      7deg,
+      transparent 0 9px,
+      #ffffff08 10px,
+      #00000010 12px,
+      transparent 17px
+    ),
+    linear-gradient(
+      135deg,
+      #65432b 0%,
+      #392519 24%,
+      #24170f 55%,
+      #563821 100%
+    );
+  box-shadow:
+    0 15px 32px #000c,
+    inset 0 1px 2px #f5d7a044,
+    inset 0 -3px 8px #080503;
 }
 
 .radio-top {
-    height: 19px;
-    padding-bottom: 5px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5px 5px;
 }
 
-/* Dial */
+.screw {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 35% 30%,
+    #d1b98d,
+    #59452d 70%
+  );
+  box-shadow: 0 1px 2px #000;
+}
+
+.radio-name {
+  font: 700 10px 'Barlow Condensed', sans-serif;
+  letter-spacing: 3px;
+  color: #d5b98a;
+  text-shadow: 0 1px #160d08;
+}
+
+/* Dial analógico */
+
 .dial-window {
-    padding: 7px 10px 5px;
+  border: 2px solid #9a7544;
+  border-radius: 7px;
+  padding: 7px 11px 5px;
+  background: linear-gradient(
+    180deg,
+    #f2dfb8 0%,
+    #d6b47b 100%
+  );
+  box-shadow:
+    inset 0 2px 8px #6a4925,
+    0 1px 0 #fff4c8;
+  color: var(--ink);
+}
+
+.dial-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #674522;
+}
+
+.dial-fm {
+  font: 700 11px 'Barlow Condensed', sans-serif;
+  letter-spacing: 2px;
+}
+
+.dial-head strong {
+  font: 700 22px 'Roboto Mono', monospace;
+  letter-spacing: 1px;
+  color: #7b4c20;
+  text-shadow: 0 1px #fff2d5;
+}
+
+.dial-head strong small {
+  font-size: 9px;
 }
 
 .scale {
-    height: 65px;
-    margin-top: 3px;
+  height: clamp(50px, 7.4vh, 67px);
+  position: relative;
+  margin-top: 3px;
+  overflow: hidden;
+}
+
+.scale-numbers {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1px;
+  color: #60421f;
+  font-size: 9px;
+  position: relative;
+  z-index: 1;
+}
+
+.ticks {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 17px;
+  height: 25px;
+  background: repeating-linear-gradient(
+    90deg,
+    #6c4b27 0 1px,
+    transparent 1px calc(5% - 1px),
+    #6c4b27 calc(5% - 1px) 5%
+  );
+  opacity: .9;
+}
+
+.ticks:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0 calc(1% - 1px),
+    #8e6a3d calc(1% - 1px) 1%
+  );
+  opacity: .45;
 }
 
 .needle {
-    height: 42px;
+  position: absolute;
+  top: 12px;
+  left: 30%;
+  height: 39px;
+  width: 2px;
+  background: #bd482e;
+  z-index: 3;
+  filter: drop-shadow(0 0 3px #bd482e);
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.needle:before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -4px;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 8px solid #bd482e;
+}
+
+.needle div {
+  position: absolute;
+  top: 7px;
+  left: 0;
+  height: 32px;
+  width: 1px;
+  background: #bd482e;
+}
+
+.scale-caption {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+  justify-content: center;
+  font-size: 7px;
+  color: #77552d;
+  letter-spacing: 1px;
+}
+
+.scale-caption span {
+  height: 1px;
+  background: #98744a;
+  flex: 1;
 }
 
 /* Altavoz y controles */
+
 .radio-face {
-    grid-template-columns: minmax(0, 1fr) 105px;
-    gap: 8px;
-    padding: 8px 5px 5px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 112px;
+  gap: 8px;
+  padding: 9px 5px 6px;
+  align-items: center;
+}
+
+.speaker-wrap {
+  min-width: 0;
 }
 
 .speaker {
-    height: 85px;
-}
-
-.speaker-label {
-    margin-bottom: 5px;
+  height: clamp(76px, 12vh, 105px);
+  border-radius: 8px;
+  border: 2px solid #795333;
+  background-color: #241910;
+  background-image:
+    radial-gradient(
+      ellipse at center,
+      #110d09 0 2px,
+      #765b3d 2.5px 3px,
+      transparent 3.5px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      #ffffff08 0 1px,
+      transparent 1px 4px
+    );
+  background-size: 9px 9px, 100% 4px;
+  box-shadow:
+    inset 0 3px 9px #000,
+    0 1px 0 #e4bd8050;
 }
 
 .controls {
-    gap: 7px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
 }
+
+.signal-block {
+  text-align: center;
+  width: 100%;
+}
+
+.signal-bars {
+  height: 19px;
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  gap: 3px;
+}
+
+.signal-bars i {
+  display: block;
+  width: 6px;
+  height: 5px;
+  background: #5b6048;
+  border-radius: 1px;
+  transition: height .15s, background .15s;
+}
+
+.signal-bars i:nth-child(2) { height: 7px; }
+.signal-bars i:nth-child(3) { height: 9px; }
+.signal-bars i:nth-child(4) { height: 11px; }
+.signal-bars i:nth-child(5) { height: 13px; }
+.signal-bars i:nth-child(6) { height: 15px; }
+.signal-bars i:nth-child(7) { height: 17px; }
+.signal-bars i:nth-child(8) { height: 19px; }
+
+.signal-caption {
+  font-size: 0;
+  height: 1px;
+  color: transparent;
+}
+
+/* Rueda de sintonización */
 
 .knob-area {
-    width: 72px;
-    height: 72px;
+  width: clamp(66px, 10vh, 82px);
+  height: clamp(66px, 10vh, 82px);
+  border-radius: 50%;
+  padding: 6px;
+  background: linear-gradient(
+    145deg,
+    #d1b17b,
+    #5b4028 52%,
+    #1c120d
+  );
+  border: 1px solid #987246;
+  box-shadow:
+    0 4px 8px #000b,
+    inset 0 1px 2px #fff5d0;
 }
 
-.knob-hint {
-    font-size: 6px;
-    margin-top: 3px;
+.knob-ring {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  padding: 5px;
+  background: linear-gradient(
+    145deg,
+    #20150e,
+    #80613d,
+    #24170f
+  );
+}
+
+.knob {
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  position: relative;
+  background:
+    repeating-conic-gradient(
+      from -135deg,
+      #b5a17e 0deg 1deg,
+      #544735 1deg 4deg
+    ),
+    radial-gradient(circle, #6c5b42, #21180f);
+  box-shadow:
+    inset 0 2px 8px #000,
+    0 1px 2px #fff3;
+  touch-action: none;
+  cursor: grab;
+  outline: none;
+}
+
+.knob:active {
+  cursor: grabbing;
+}
+
+.knob-line {
+  position: absolute;
+  top: 6px;
+  left: calc(50% - 2px);
+  width: 4px;
+  height: 15px;
+  border-radius: 3px;
+  background: #f2c66f;
+  box-shadow: 0 0 6px #ffbd59;
+}
+
+.knob-center {
+  position: absolute;
+  inset: 27%;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #65523a, #21170f);
+  box-shadow:
+    inset 0 2px 5px #000,
+    0 1px #fff4;
 }
 
 .radio-bottom {
-    padding: 6px 3px 1px;
-    font-size: 6px;
+  border-top: 1px solid #e4c28b33;
+  padding: 6px 5px 0;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  font-size: 6px;
+  color: #c2a477;
+  letter-spacing: 2px;
 }
 
-/* Panel inferior */
+/* Panel de reproducción */
+
 .player-panel {
-    flex: 0 0 auto;
-    margin-top: 9px;
-    padding: 10px;
+  flex: 0 0 auto;
+  margin-top: clamp(8px, 1.5vh, 13px);
+  padding: 9px 11px;
+  border: 1px solid #6a4b2d;
+  border-radius: 12px;
+  background: linear-gradient(145deg, #302116, #1c140f);
+  box-shadow:
+    inset 0 1px #ffffff12,
+    0 5px 15px #0008;
+}
+
+.frequency-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #c2a477;
+  font-size: 9px;
+  letter-spacing: 1px;
 }
 
 .frequency-line strong {
-    font-size: 14px;
+  font-size: 14px;
+  color: #edc47e;
 }
 
 .meter {
-    margin-top: 7px;
+  height: 4px;
+  background: #120d09;
+  border-radius: 5px;
+  margin-top: 7px;
+  overflow: hidden;
+}
+
+.meter div {
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, #b17b3e, #f2c36f);
+  box-shadow: 0 0 8px #e5a647;
+  transition: width .15s;
 }
 
 .feedback {
-    min-height: 25px;
-    padding: 4px 0;
-    font-size: 9px;
+  min-height: 25px;
+  padding: 5px 0;
+  color: #d4bd96;
+  text-align: center;
+  font-size: 9px;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
 }
 
 .power-button {
-    height: 39px;
+  flex: 1;
+  height: 39px;
+  border: 1px solid #c69a57;
+  border-radius: 7px;
+  color: #2b1b0e;
+  background: linear-gradient(180deg, #edc47e, #b17a3c);
+  box-shadow:
+    inset 0 1px #fff7d9,
+    0 3px 0 #69431f,
+    0 4px 8px #0008;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.power-button:active {
+  transform: translateY(2px);
+  box-shadow:
+    inset 0 1px #fff7d9,
+    0 1px 0 #69431f;
+}
+
+.power-icon {
+  font-size: 18px;
 }
 
 .reset-button {
-    width: 39px;
+  width: 39px;
+  border: 1px solid #725638;
+  border-radius: 7px;
+  color: #e3c18a;
+  background: linear-gradient(145deg, #493421, #24180f);
+  font-size: 19px;
 }
 
-/* Transmisión */
+/* Mensaje de transmisión */
+
 .transmission {
-    margin-top: 7px;
-    padding: 7px 9px;
+  margin-top: 8px;
+  padding: 8px 10px;
+  border: 1px solid #62784a;
+  background: #172014;
+  border-radius: 7px;
+}
+
+.on-air {
+  font-size: 9px;
+  color: #b6d18e;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+
+.on-air i {
+  background: #91b96e;
+  box-shadow: 0 0 8px #91b96e;
 }
 
 .transmission p {
-    margin: 5px 0;
-    font-size: 10px;
+  font-size: 10px;
+  line-height: 1.4;
+  color: #e2e9d6;
+  margin: 5px 0;
 }
 
 .coordinates-note {
-    font-size: 7px;
+  font-size: 7px;
+  letter-spacing: 1px;
+  color: #a6bb87;
 }
 
-/* Pie */
 footer {
-    flex: 0 0 auto;
-    margin-top: auto;
-    padding: 8px 0 0;
-    font-size: 7px;
+  display: none;
 }
 
-/* Móviles pequeños */
+/* Pantallas pequeñas */
+
 @media (max-height: 700px) {
-    .radio-face {
-        grid-template-columns: minmax(0, 1fr) 90px;
-    }
+  .radio-face {
+    grid-template-columns: minmax(0, 1fr) 96px;
+  }
 
-    .speaker {
-        height: 65px;
-    }
+  .speaker {
+    height: 68px;
+  }
 
-    .knob-area {
-        width: 60px;
-        height: 60px;
-    }
+  .knob-area {
+    width: 60px;
+    height: 60px;
+  }
 
-    .signal-bars {
-        height: 18px;
-    }
+  .player-panel {
+    margin-top: 7px;
+    padding: 7px 9px;
+  }
 
-    .player-panel {
-        padding: 7px 9px;
-    }
+  .feedback {
+    min-height: 20px;
+    padding: 3px 0;
+  }
 
-    .power-button {
-        height: 34px;
-    }
+  .power-button {
+    height: 34px;
+  }
 
-    footer {
-        padding-top: 4px;
-    }
+  .transmission {
+    padding: 6px 8px;
+  }
 }
 
 @media (max-width: 360px) {
-    .app {
-        padding-left: 9px;
-        padding-right: 9px;
-    }
+  .app {
+    padding-left: 9px;
+    padding-right: 9px;
+  }
 
-    .radio-face {
-        grid-template-columns: minmax(0, 1fr) 82px;
-        gap: 5px;
-    }
+  .radio-face {
+    grid-template-columns: minmax(0, 1fr) 88px;
+    gap: 5px;
+  }
+
+  .speaker {
+    height: 68px;
+  }
 }
-
