@@ -1,21 +1,18 @@
-# Mystery Radio
+# Mystery Radio Cache
 
-Aplicación web estática para una Mystery Cache. Simula una radio FM portátil de los años 70.
+Web estática responsive para GitHub Pages. La portada replica la estructura visual de Chess Mystery Cache: logo centrado, nombre y botones grandes para seleccionar transmisión. No incluye selector de idiomas.
 
-## Probarla
-Abre `index.html` en un navegador moderno. Para probar el audio en condiciones reales, es recomendable servir la carpeta mediante un servidor local o GitHub Pages.
+## Archivos principales
+- `index.html`: portada y selector de transmisiones.
+- `radio.html`: interfaz de la radio retro.
+- `transmissions.js`: nombre del caché, listado, frecuencias y archivos de audio.
+- `app.js` y `style.css`: motor de sintonización y diseño de la radio.
+- `assets/mystery-radio-logo.png`: logo.
 
-## Personalización
-Edita el objeto `config` al principio de `app.js`:
-- `targetFrequency`: frecuencia donde está la emisora.
-- `message`: texto de referencia que aparece al encontrarla.
-- `tolerance`: precisión necesaria para sintonizar.
-- `startFrequency`: frecuencia inicial.
+## Añadir transmisiones
+Edita `transmissions.js` y añade un objeto al array `transmissions`, con `id`, `title`, `targetFrequency`, `startFrequency`, `audio` y `tolerance`. Después añade el MP3 correspondiente dentro de `assets/`.
 
-Coloca tu locución grabada en `assets/transmission.mp3`. El archivo se reproduce en bucle mientras el jugador está cerca de la emisora y su volumen aumenta al afinar la frecuencia.
+Las coordenadas deben estar únicamente en la locución. La interfaz no muestra una transcripción ni imprime las coordenadas en pantalla.
 
 ## Publicar en GitHub Pages
-Sube `index.html`, `style.css`, `app.js`, `README.md` y la carpeta `assets` a un repositorio. Activa Pages desde la rama principal y la carpeta raíz.
-
-## Nota
-Esta versión es un prototipo funcional de interfaz y sintonización. El texto y las coordenadas incluidos son marcadores de posición: sustitúyelos por tu mensaje real antes de publicar el geocaché.
+Sube el contenido de esta carpeta a la raíz del repositorio y activa GitHub Pages desde Settings → Pages → Deploy from a branch → `main` → `/ (root)`.

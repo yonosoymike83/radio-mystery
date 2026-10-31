@@ -1,13 +1,15 @@
 const $ = id => document.getElementById(id);
+const params = new URLSearchParams(location.search);
+const selectedId = params.get("id") || "01";
+const selectedTransmission = (window.MYSTERY_CONFIG?.transmissions || []).find(item => item.id === selectedId)
+  || (window.MYSTERY_CONFIG?.transmissions || [])[0] || {};
 const config = {
   minFrequency: 88.0,
   maxFrequency: 108.0,
-  startFrequency: 94.0,
-  targetFrequency: 96.7,
-  // Cambia este texto por la locución y las coordenadas de tu Mystery.
-  message: "Atención, atención. Has encontrado la frecuencia correcta. Anota las coordenadas: N 00 grados 00.000, E 000 grados 00.000. Repetimos: N 00 grados 00.000, E 000 grados 00.000.",
-  tolerance: 0.035,
-  voiceFile: "assets/transmission.mp3"
+  startFrequency: selectedTransmission.startFrequency ?? 94.0,
+  targetFrequency: selectedTransmission.targetFrequency ?? 96.7,
+  tolerance: selectedTransmission.tolerance ?? 0.035,
+  voiceFile: selectedTransmission.audio || "assets/transmission-01.mp3"
 };
 
 let frequency = config.startFrequency;
@@ -16,6 +18,8 @@ let audioContext, noiseSource, noiseGain, filter, voiceGain, voiceSource;
 let voiceStarted = false;
 let raf = null;
 const voice = $("voiceAudio");
+voice.src = config.voiceFile;
+document.title = `Mystery Radio Cache · ${selectedTransmission.title || "Transmission"}`;
 
 function clamp(v,a,b){return Math.max(a,Math.min(b,v))}
 function distance(){return Math.abs(frequency-config.targetFrequency)}
@@ -99,7 +103,6 @@ function updateSoundAndUI(){
   if(near<config.tolerance){
     $("feedback").textContent="¡Frecuencia encontrada! Mantén la sintonización.";
     $("transmission").hidden=false;
-    $("transcript").textContent=config.message;
   }else if(q>.6){
     $("feedback").textContent="Estás muy cerca… afina lentamente la sintonización.";
     $("transmission").hidden=true;

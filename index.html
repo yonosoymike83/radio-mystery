@@ -1,90 +1,42 @@
 <!doctype html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#090b0d">
-  <title>Mystery Radio</title>
+  <meta name="theme-color" content="#111111">
+  <title>Mystery Radio Cache</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    *{box-sizing:border-box}
+    body{margin:0;min-height:100vh;background:#111;color:#f7f7f7;font-family:Arial,Helvetica,sans-serif}
+    .home{width:min(100% - 40px,660px);margin:0 auto;padding:30px 0 42px;display:flex;flex-direction:column;align-items:center}
+    .home-logo{display:block;width:min(66vw,420px);height:auto;aspect-ratio:1;object-fit:contain;margin:0 auto 28px}
+    .home-title{font-size:clamp(29px,6vw,52px);line-height:1.12;font-weight:700;text-align:center;margin:0 0 38px;letter-spacing:-.6px}
+    .transmissions{width:100%;display:flex;flex-direction:column;gap:20px}
+    .transmission-link{min-height:84px;padding:18px 16px;display:flex;align-items:center;justify-content:center;text-align:center;text-decoration:none;color:#f5f5f5;background:#242424;border-radius:17px;font-size:clamp(21px,4.2vw,29px);font-weight:400;transition:background .15s ease}
+    .transmission-link:active{background:#333}
+    @media(min-width:700px){.home{padding-top:36px}.home-logo{width:350px}.home-title{margin-bottom:38px}}
+  </style>
 </head>
 <body>
-  <main class="app">
-    <header class="topbar">
-      <div class="brand-mark">MYSTERY <span>RADIO</span></div>
-      <div class="status"><i id="powerLed"></i><span id="statusText">OFF</span></div>
-    </header>
-
-    <section class="radio-shell" aria-label="Radio FM antigua">
-      <div class="radio-top">
-        <div class="screw"></div><div class="screw"></div>
-        <div class="radio-name">MR-70 <small>FM RECEIVER</small></div>
-        <div class="screw"></div><div class="screw"></div>
-      </div>
-
-      <div class="dial-window">
-        <div class="dial-head">
-          <span>FM</span>
-          <strong id="frequencyReadout">——.— <small>MHz</small></strong>
-          <span class="stereo">STEREO <b id="stereoLed"></b></span>
-        </div>
-        <div class="scale" id="scale" aria-label="Escala de frecuencias FM">
-          <div class="scale-numbers">
-            <span>88</span><span>92</span><span>96</span><span>100</span><span>104</span><span>108</span>
-          </div>
-          <div class="ticks"></div>
-          <div class="needle" id="needle"><div></div></div>
-          <div class="scale-caption">88 ───────────────────────────── 108 MHz</div>
-        </div>
-      </div>
-
-      <div class="radio-face">
-        <div class="speaker-wrap">
-          <div class="speaker-label">MYSTERY RADIO • ANALOG TUNING</div>
-          <div class="speaker" aria-hidden="true"></div>
-          <div class="speaker-bottom"><span>VOLUME</span><span>POWER</span></div>
-        </div>
-        <div class="controls">
-          <div class="signal-block">
-            <div class="signal-title">SIGNAL</div>
-            <div class="signal-bars" id="signalBars">
-              <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-            </div>
-            <div class="signal-caption" id="signalCaption">NO SIGNAL</div>
-          </div>
-          <div class="tuning-control">
-            <div class="tuning-label">TUNING</div>
-            <div class="knob-area">
-              <div class="knob-ring">
-                <div class="knob" id="knob" role="slider" tabindex="0" aria-label="Sintonizar frecuencia" aria-valuemin="88" aria-valuemax="108" aria-valuenow="94">
-                  <div class="knob-line"></div><div class="knob-center"></div>
-                </div>
-              </div>
-            </div>
-            <div class="knob-hint">GIRA PARA SINTONIZAR</div>
-          </div>
-        </div>
-      </div>
-      <div class="radio-bottom"><span>SUPERHETERODYNE</span><span>88–108 MHz</span><span>MADE FOR THE UNKNOWN</span></div>
-    </section>
-
-    <section class="player-panel">
-      <div class="frequency-line"><span>FRECUENCIA ACTUAL</span><strong id="frequencyLabel">94.0 MHz</strong></div>
-      <div class="meter"><div id="meterFill"></div></div>
-      <div class="feedback" id="feedback">Enciende la radio para comenzar la búsqueda.</div>
-      <div class="actions">
-        <button class="power-button" id="powerButton"><span class="power-icon">⏻</span><span id="powerButtonText">ENCENDER RADIO</span></button>
-        <button class="reset-button" id="resetButton" title="Volver a la frecuencia inicial">↺</button>
-      </div>
-      <div class="transmission" id="transmission" hidden>
-        <div class="on-air"><i></i> TRANSMISIÓN RECIBIDA</div>
-        <p id="transcript"></p>
-        <div class="coordinates-note">ANOTA LAS COORDENADAS PARA CONTINUAR</div>
-      </div>
-    </section>
-
-    <footer>UNA SEÑAL. UNA FRECUENCIA. UN DESTINO.</footer>
+  <main class="home">
+    <img class="home-logo" src="assets/mystery-radio-logo.png" alt="Mystery Radio Cache logo">
+    <h1 class="home-title" id="cacheTitle">Mystery Radio Cache</h1>
+    <nav class="transmissions" id="transmissions" aria-label="Transmissions"></nav>
   </main>
-  <audio id="voiceAudio" src="assets/transmission.mp3" preload="auto" loop></audio>
-  <script src="app.js"></script>
+  <script src="transmissions.js"></script>
+  <script>
+    const cfg = window.MYSTERY_CONFIG || {};
+    document.title = cfg.title || 'Mystery Radio Cache';
+    document.getElementById('cacheTitle').textContent = cfg.title || 'Mystery Radio Cache';
+    const list = document.getElementById('transmissions');
+    (cfg.transmissions || []).forEach((item, index) => {
+      const link = document.createElement('a');
+      link.className = 'transmission-link';
+      link.href = 'radio.html?id=' + encodeURIComponent(item.id);
+      link.textContent = item.title || `Transmission ${String(index + 1).padStart(2,'0')}`;
+      list.appendChild(link);
+    });
+  </script>
 </body>
 </html>
