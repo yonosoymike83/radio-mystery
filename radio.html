@@ -4,12 +4,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#17110d">
-  <title>Mystery Radio · Transmission</title>
+  <meta name="theme-color" content="#000000">
+  <title>Mystery Radio</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <main class="app">
+
+    <h1 class="page-title">Sunshine of Your Love</h1>
+
     <header class="topbar">
       <a class="back-link" href="index.html" aria-label="Volver">←</a>
       <div class="brand-mark">MR <span>70</span></div>
@@ -20,9 +23,10 @@
     </header>
 
     <section class="radio-shell" aria-label="Radio portátil antigua">
+
       <div class="radio-top">
         <div class="screw"></div>
-        <div class="radio-name">MYSTERY RADIO</div>
+        <div class="radio-name"></div>
         <div class="screw"></div>
       </div>
 
@@ -82,6 +86,7 @@
     </section>
 
     <section class="player-panel">
+
       <div class="frequency-line">
         <span>FM</span>
         <strong id="frequencyLabel">94.0 MHz</strong>
@@ -95,8 +100,8 @@
 
       <div class="actions">
         <button class="power-button" id="powerButton">
-          <span class="power-icon">⏻</span>
-          <span id="powerButtonText">ENCENDER</span>
+          <span class="power-icon" aria-hidden="true">⏻</span>
+          <span id="powerButtonText">ENCENDER RADIO</span>
         </button>
 
         <button class="reset-button" id="resetButton"
@@ -108,6 +113,7 @@
         <p>LISTEN CAREFULLY</p>
         <div class="coordinates-note">NOTE THE COORDINATES</div>
       </div>
+
     </section>
   </main>
 
