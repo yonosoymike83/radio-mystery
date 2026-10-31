@@ -17,11 +17,14 @@
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   width: 100%;
   height: 100%;
   margin: 0;
+  padding: 0;
   overflow: hidden !important;
+  background: #000 !important;
 }
 
 body {
@@ -29,13 +32,8 @@ body {
   height: 100svh;
   display: flex;
   justify-content: center;
+  align-items: flex-start;
   color: var(--cream);
-  background: radial-gradient(
-    ellipse at 50% 8%,
-    #34251a 0,
-    #17110d 54%,
-    #090807 100%
-  );
   font-family: 'Roboto Mono', monospace;
 }
 
@@ -44,72 +42,47 @@ body {
   height: 100svh;
   max-height: 100svh;
   min-height: 0;
-  padding: clamp(7px, 1.5vh, 14px) 14px;
+  padding: 20px 14px 12px;
   display: flex;
   flex-direction: column;
+  align-items: stretch;
   overflow: hidden;
 }
 
-/* Cabecera */
+/* TÍTULO */
+
+.page-title {
+  flex: 0 0 auto;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  font-size: clamp(27px, 7vw, 42px);
+  font-weight: 700;
+  line-height: 1.15;
+  text-align: center;
+  margin: 7px 0 35px;
+}
+
+/* CABECERA ORIGINAL OCULTA */
 
 .topbar {
-  flex: 0 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 0 3px clamp(7px, 1.2vh, 12px);
-  height: 22px;
+  display: none !important;
 }
 
-.back-link {
-  color: #d5b47c;
-  text-decoration: none;
-  font-size: 21px;
-  line-height: 1;
+.brand-mark,
+.radio-name {
+  display: none !important;
 }
 
-.brand-mark {
-  font: 700 14px 'Barlow Condensed', sans-serif;
-  letter-spacing: 3px;
-  color: #e8d2aa;
-}
-
-.brand-mark span {
-  color: var(--gold);
-}
-
-.status {
-  font-size: 8px;
-  letter-spacing: 2px;
-  color: #c4aa82;
-  display: flex;
-  align-items: center;
-  gap: 7px;
-}
-
-.status i,
-.on-air i {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #555;
-  display: inline-block;
-  box-shadow: 0 0 0 2px #21170f;
-}
-
-.status.on i {
-  background: #d94b36;
-  box-shadow: 0 0 8px #e04c32;
-}
-
-/* Carcasa de baquelita y madera */
+/* CARCASA DE LA RADIO */
 
 .radio-shell {
   flex: 0 0 auto;
   position: relative;
-  padding: 9px 10px 8px;
-  border-radius: 18px;
+  width: 100%;
+  padding: 12px 12px 10px;
+  border-radius: 24px;
   border: 2px solid #765334;
+
   background:
     repeating-linear-gradient(
       7deg,
@@ -125,6 +98,7 @@ body {
       #24170f 55%,
       #563821 100%
     );
+
   box-shadow:
     0 15px 32px #000c,
     inset 0 1px 2px #f5d7a044,
@@ -132,16 +106,16 @@ body {
 }
 
 .radio-top {
-  height: 20px;
+  height: 22px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 5px 5px;
+  padding: 0 7px 6px;
 }
 
 .screw {
-  width: 6px;
-  height: 6px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
   background: radial-gradient(
     circle at 35% 30%,
@@ -151,27 +125,23 @@ body {
   box-shadow: 0 1px 2px #000;
 }
 
-.radio-name {
-  font: 700 10px 'Barlow Condensed', sans-serif;
-  letter-spacing: 3px;
-  color: #d5b98a;
-  text-shadow: 0 1px #160d08;
-}
-
-/* Dial analógico */
+/* DIAL ANALÓGICO */
 
 .dial-window {
   border: 2px solid #9a7544;
-  border-radius: 7px;
-  padding: 7px 11px 5px;
+  border-radius: 10px;
+  padding: 11px 13px 9px;
+
   background: linear-gradient(
     180deg,
     #f2dfb8 0%,
     #d6b47b 100%
   );
+
   box-shadow:
     inset 0 2px 8px #6a4925,
     0 1px 0 #fff4c8;
+
   color: var(--ink);
 }
 
@@ -183,25 +153,25 @@ body {
 }
 
 .dial-fm {
-  font: 700 11px 'Barlow Condensed', sans-serif;
+  font: 700 15px 'Barlow Condensed', sans-serif;
   letter-spacing: 2px;
 }
 
 .dial-head strong {
-  font: 700 22px 'Roboto Mono', monospace;
+  font: 700 29px 'Roboto Mono', monospace;
   letter-spacing: 1px;
   color: #7b4c20;
   text-shadow: 0 1px #fff2d5;
 }
 
 .dial-head strong small {
-  font-size: 9px;
+  font-size: 11px;
 }
 
 .scale {
-  height: clamp(50px, 7.4vh, 67px);
+  height: 76px;
   position: relative;
-  margin-top: 3px;
+  margin-top: 5px;
   overflow: hidden;
 }
 
@@ -210,7 +180,7 @@ body {
   justify-content: space-between;
   padding: 0 1px;
   color: #60421f;
-  font-size: 9px;
+  font-size: 11px;
   position: relative;
   z-index: 1;
 }
@@ -219,14 +189,16 @@ body {
   position: absolute;
   left: 0;
   right: 0;
-  top: 17px;
-  height: 25px;
+  top: 20px;
+  height: 31px;
+
   background: repeating-linear-gradient(
     90deg,
     #6c4b27 0 1px,
     transparent 1px calc(5% - 1px),
     #6c4b27 calc(5% - 1px) 5%
   );
+
   opacity: .9;
 }
 
@@ -234,20 +206,22 @@ body {
   content: "";
   position: absolute;
   inset: 0;
+
   background: repeating-linear-gradient(
     90deg,
     transparent 0 calc(1% - 1px),
     #8e6a3d calc(1% - 1px) 1%
   );
+
   opacity: .45;
 }
 
 .needle {
   position: absolute;
-  top: 12px;
+  top: 15px;
   left: 30%;
-  height: 39px;
-  width: 2px;
+  height: 48px;
+  width: 3px;
   background: #bd482e;
   z-index: 3;
   filter: drop-shadow(0 0 3px #bd482e);
@@ -262,14 +236,14 @@ body {
   left: -4px;
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
-  border-top: 8px solid #bd482e;
+  border-top: 9px solid #bd482e;
 }
 
 .needle div {
   position: absolute;
   top: 7px;
   left: 0;
-  height: 32px;
+  height: 40px;
   width: 1px;
   background: #bd482e;
 }
@@ -283,7 +257,7 @@ body {
   gap: 8px;
   text-align: center;
   justify-content: center;
-  font-size: 7px;
+  font-size: 8px;
   color: #77552d;
   letter-spacing: 1px;
 }
@@ -294,13 +268,13 @@ body {
   flex: 1;
 }
 
-/* Altavoz y controles */
+/* ALTAVOZ Y CONTROLES */
 
 .radio-face {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 112px;
-  gap: 8px;
-  padding: 9px 5px 6px;
+  grid-template-columns: minmax(0, 1fr) 135px;
+  gap: 12px;
+  padding: 13px 6px 9px;
   align-items: center;
 }
 
@@ -309,10 +283,11 @@ body {
 }
 
 .speaker {
-  height: clamp(76px, 12vh, 105px);
-  border-radius: 8px;
+  height: 145px;
+  border-radius: 10px;
   border: 2px solid #795333;
   background-color: #241910;
+
   background-image:
     radial-gradient(
       ellipse at center,
@@ -325,7 +300,9 @@ body {
       #ffffff08 0 1px,
       transparent 1px 4px
     );
-  background-size: 9px 9px, 100% 4px;
+
+  background-size: 12px 12px, 100% 4px;
+
   box-shadow:
     inset 0 3px 9px #000,
     0 1px 0 #e4bd8050;
@@ -335,7 +312,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
 }
 
 .signal-block {
@@ -344,29 +321,29 @@ body {
 }
 
 .signal-bars {
-  height: 19px;
+  height: 26px;
   display: flex;
   align-items: end;
   justify-content: center;
-  gap: 3px;
+  gap: 4px;
 }
 
 .signal-bars i {
   display: block;
-  width: 6px;
+  width: 8px;
   height: 5px;
   background: #5b6048;
   border-radius: 1px;
   transition: height .15s, background .15s;
 }
 
-.signal-bars i:nth-child(2) { height: 7px; }
-.signal-bars i:nth-child(3) { height: 9px; }
-.signal-bars i:nth-child(4) { height: 11px; }
-.signal-bars i:nth-child(5) { height: 13px; }
-.signal-bars i:nth-child(6) { height: 15px; }
-.signal-bars i:nth-child(7) { height: 17px; }
-.signal-bars i:nth-child(8) { height: 19px; }
+.signal-bars i:nth-child(2) { height: 8px; }
+.signal-bars i:nth-child(3) { height: 11px; }
+.signal-bars i:nth-child(4) { height: 14px; }
+.signal-bars i:nth-child(5) { height: 17px; }
+.signal-bars i:nth-child(6) { height: 20px; }
+.signal-bars i:nth-child(7) { height: 23px; }
+.signal-bars i:nth-child(8) { height: 26px; }
 
 .signal-caption {
   font-size: 0;
@@ -374,20 +351,23 @@ body {
   color: transparent;
 }
 
-/* Rueda de sintonización */
+/* RUEDA DE SINTONIZACIÓN */
 
 .knob-area {
-  width: clamp(66px, 10vh, 82px);
-  height: clamp(66px, 10vh, 82px);
+  width: 118px;
+  height: 118px;
   border-radius: 50%;
-  padding: 6px;
+  padding: 7px;
+
   background: linear-gradient(
     145deg,
     #d1b17b,
     #5b4028 52%,
     #1c120d
   );
+
   border: 1px solid #987246;
+
   box-shadow:
     0 4px 8px #000b,
     inset 0 1px 2px #fff5d0;
@@ -397,7 +377,8 @@ body {
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  padding: 5px;
+  padding: 6px;
+
   background: linear-gradient(
     145deg,
     #20150e,
@@ -411,6 +392,7 @@ body {
   width: 100%;
   border-radius: 50%;
   position: relative;
+
   background:
     repeating-conic-gradient(
       from -135deg,
@@ -418,9 +400,11 @@ body {
       #544735 1deg 4deg
     ),
     radial-gradient(circle, #6c5b42, #21180f);
+
   box-shadow:
     inset 0 2px 8px #000,
     0 1px 2px #fff3;
+
   touch-action: none;
   cursor: grab;
   outline: none;
@@ -435,7 +419,7 @@ body {
   top: 6px;
   left: calc(50% - 2px);
   width: 4px;
-  height: 15px;
+  height: 17px;
   border-radius: 3px;
   background: #f2c66f;
   box-shadow: 0 0 6px #ffbd59;
@@ -445,104 +429,98 @@ body {
   position: absolute;
   inset: 27%;
   border-radius: 50%;
-  background: linear-gradient(145deg, #65523a, #21170f);
+
+  background: linear-gradient(
+    145deg,
+    #65523a,
+    #21170f
+  );
+
   box-shadow:
     inset 0 2px 5px #000,
     0 1px #fff4;
 }
 
+/* PARTE INFERIOR DE LA RADIO */
+
 .radio-bottom {
   border-top: 1px solid #e4c28b33;
-  padding: 6px 5px 0;
+  padding: 8px 5px 1px;
   display: flex;
   justify-content: center;
   gap: 12px;
-  font-size: 6px;
+  font-size: 8px;
   color: #c2a477;
   letter-spacing: 2px;
 }
 
-/* Panel de reproducción */
+/* PANEL DE REPRODUCCIÓN */
 
 .player-panel {
   flex: 0 0 auto;
-  margin-top: clamp(8px, 1.5vh, 13px);
-  padding: 9px 11px;
-  border: 1px solid #6a4b2d;
-  border-radius: 12px;
-  background: linear-gradient(145deg, #302116, #1c140f);
-  box-shadow:
-    inset 0 1px #ffffff12,
-    0 5px 15px #0008;
+  width: 100%;
+  margin-top: 18px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
-.frequency-line {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: #c2a477;
-  font-size: 9px;
-  letter-spacing: 1px;
-}
+/* Elementos funcionales conservados en HTML,
+   pero que no aparecen en pantalla */
 
-.frequency-line strong {
-  font-size: 14px;
-  color: #edc47e;
-}
-
-.meter {
-  height: 4px;
-  background: #120d09;
-  border-radius: 5px;
-  margin-top: 7px;
-  overflow: hidden;
-}
-
-.meter div {
-  height: 100%;
-  width: 0;
-  background: linear-gradient(90deg, #b17b3e, #f2c36f);
-  box-shadow: 0 0 8px #e5a647;
-  transition: width .15s;
-}
-
+.frequency-line,
+.meter,
 .feedback {
-  min-height: 25px;
-  padding: 5px 0;
-  color: #d4bd96;
-  text-align: center;
-  font-size: 9px;
+  display: none !important;
 }
+
+/* BOTONES */
 
 .actions {
   display: flex;
-  gap: 8px;
+  gap: 10px;
+  align-items: stretch;
+  width: 100%;
 }
 
 button {
   font: inherit;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .power-button {
   flex: 1;
-  height: 39px;
+  min-width: 0;
+  height: 56px;
+
   border: 1px solid #c69a57;
-  border-radius: 7px;
+  border-radius: 10px;
+
   color: #2b1b0e;
-  background: linear-gradient(180deg, #edc47e, #b17a3c);
+
+  background: linear-gradient(
+    180deg,
+    #edc47e,
+    #b17a3c
+  );
+
   box-shadow:
     inset 0 1px #fff7d9,
-    0 3px 0 #69431f,
-    0 4px 8px #0008;
+    0 4px 0 #69431f,
+    0 5px 10px #0008;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 0;
+
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: 14px;
+  font-size: 21px;
   font-weight: 800;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
 }
 
 .power-button:active {
@@ -553,49 +531,62 @@ button {
 }
 
 .power-icon {
-  font-size: 18px;
+  display: none !important;
 }
 
 .reset-button {
-  width: 39px;
+  flex: 0 0 56px;
+  height: 56px;
+
   border: 1px solid #725638;
-  border-radius: 7px;
+  border-radius: 10px;
+
   color: #e3c18a;
-  background: linear-gradient(145deg, #493421, #24180f);
-  font-size: 19px;
+
+  background: linear-gradient(
+    145deg,
+    #493421,
+    #24180f
+  );
+
+  font-size: 25px;
 }
 
-/* Mensaje de transmisión */
+/* TRANSMISIÓN RECIBIDA */
 
 .transmission {
-  margin-top: 8px;
-  padding: 8px 10px;
+  margin-top: 14px;
+  padding: 10px;
   border: 1px solid #62784a;
   background: #172014;
   border-radius: 7px;
 }
 
 .on-air {
-  font-size: 9px;
+  font-size: 10px;
   color: #b6d18e;
   letter-spacing: 1px;
   font-weight: 700;
 }
 
 .on-air i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  display: inline-block;
   background: #91b96e;
   box-shadow: 0 0 8px #91b96e;
 }
 
 .transmission p {
-  font-size: 10px;
+  font-size: 11px;
   line-height: 1.4;
   color: #e2e9d6;
-  margin: 5px 0;
+  margin: 6px 0;
 }
 
 .coordinates-note {
-  font-size: 7px;
+  font-size: 8px;
   letter-spacing: 1px;
   color: #a6bb87;
 }
@@ -604,53 +595,89 @@ footer {
   display: none;
 }
 
-/* Pantallas pequeñas */
+/* MÓVILES PEQUEÑOS */
 
-@media (max-height: 700px) {
+@media (max-width: 380px) {
+  .app {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .page-title {
+    font-size: 29px;
+    margin-bottom: 25px;
+  }
+
   .radio-face {
-    grid-template-columns: minmax(0, 1fr) 96px;
+    grid-template-columns: minmax(0, 1fr) 105px;
+    gap: 7px;
   }
 
   .speaker {
-    height: 68px;
+    height: 120px;
   }
 
   .knob-area {
-    width: 60px;
-    height: 60px;
+    width: 94px;
+    height: 94px;
   }
 
-  .player-panel {
-    margin-top: 7px;
-    padding: 7px 9px;
-  }
-
-  .feedback {
-    min-height: 20px;
-    padding: 3px 0;
+  .dial-head strong {
+    font-size: 25px;
   }
 
   .power-button {
-    height: 34px;
-  }
-
-  .transmission {
-    padding: 6px 8px;
+    font-size: 18px;
+    letter-spacing: 2px;
   }
 }
 
-@media (max-width: 360px) {
+/* PANTALLAS DE POCA ALTURA */
+
+@media (max-height: 700px) {
   .app {
-    padding-left: 9px;
-    padding-right: 9px;
+    padding-top: 10px;
+  }
+
+  .page-title {
+    font-size: 29px;
+    margin: 3px 0 18px;
   }
 
   .radio-face {
-    grid-template-columns: minmax(0, 1fr) 88px;
-    gap: 5px;
+    grid-template-columns: minmax(0, 1fr) 95px;
+    padding-top: 8px;
+    padding-bottom: 6px;
   }
 
   .speaker {
-    height: 68px;
+    height: 85px;
+  }
+
+  .knob-area {
+    width: 78px;
+    height: 78px;
+  }
+
+  .dial-window {
+    padding-top: 7px;
+    padding-bottom: 5px;
+  }
+
+  .scale {
+    height: 58px;
+  }
+
+  .player-panel {
+    margin-top: 12px;
+  }
+
+  .power-button,
+  .reset-button {
+    height: 46px;
+  }
+
+  .reset-button {
+    flex-basis: 46px;
   }
 }
